@@ -43,7 +43,9 @@ public class ConexionAsincrona extends AppCompatActivity implements View.OnClick
         TareaAsincrona tareaAsincrona = new TareaAsincrona();
         String texto = direccion.getText().toString();
         if (v == conectar) {
+            tiempo.setText("Descargando Pagina");
             tareaAsincrona.execute(texto);
+
         }
         }
 
@@ -68,9 +70,14 @@ public class ConexionAsincrona extends AppCompatActivity implements View.OnClick
 
         protected void onPreExecute() {
             inicio = System.currentTimeMillis();
+            // Se puede pasar contexto usando constructor y pasando el contexto
             progreso = new ProgressDialog(ConexionAsincrona.this);
             progreso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progreso.setMessage("Conectando . . .");
+            if(radioJava.isChecked()) {
+                progreso.setMessage("Conectando con JAVA. . .");
+            }else if(radioApache.isChecked()){
+                progreso.setMessage("Conectando con APACHE. . .");
+            }
             progreso.setCancelable(false);
             progreso.show();
         }
