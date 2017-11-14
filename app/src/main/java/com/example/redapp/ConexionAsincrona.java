@@ -45,7 +45,6 @@ public class ConexionAsincrona extends AppCompatActivity implements View.OnClick
         if (v == conectar) {
             tiempo.setText("Descargando Pagina");
             tareaAsincrona.execute(texto);
-
         }
         }
 
