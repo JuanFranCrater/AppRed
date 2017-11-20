@@ -44,6 +44,7 @@ public class ConexionVolley extends AppCompatActivity implements View.OnClickLis
         mButton.setOnClickListener(this);
         mWebView = (WebView) findViewById(R.id.web);
         mTextView =(TextView) findViewById(R.id.resultado);
+        mRequestQueue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
     }
 
     @Override
@@ -58,8 +59,7 @@ public class ConexionVolley extends AppCompatActivity implements View.OnClickLis
     public void makeRequest(String url) {
         final String enlace = url;
         // Instantiate the RequestQueue.
-        mRequestQueue = Volley.newRequestQueue(this);
-
+        //mRequestQueue = Volley.newRequestQueue(this);
         final ProgressDialog progreso = new ProgressDialog(ConexionVolley.this);
             progreso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progreso.setMessage("Conectando . . .");
@@ -104,7 +104,6 @@ public class ConexionVolley extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
                         mWebView.loadDataWithBaseURL(enlace, mensaje,"text/html", "UTF-8", null);
                         mTextView.setText("Duración: " + String.valueOf(fin - inicio) + " milisegundos");
-
                     }
                 });
         // Set the tag on the request.
